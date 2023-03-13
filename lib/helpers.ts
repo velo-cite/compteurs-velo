@@ -85,6 +85,8 @@ const fix = (name) => {
     .replace('[Velos]', '')
     .replace('porte', 'Porte')
     .replace('Vélos', '')
+    .replace(/ [Vv]ers [A-zéèêïë'. 0-9]+./, '')
+    .replace(/ [Ss]ens [A-zéèêïë'. 0-9]+./, '')
     .replace("'", '’')
     .replace('D’', 'd’')
     .replace(/  /g, ' ')
