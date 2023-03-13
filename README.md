@@ -1,21 +1,25 @@
-Ce petit site récupère les données ouvertes des compteurs de passages à vélo de la ville de Paris pour en faire une présentation synthétique.
+Ce petit site récupère les données ouvertes des compteurs de passages à vélo de la métropole de Bordeaux pour en faire une présentation synthétique.
 
 En particulier on peut :
 
 - Comparer les principaux compteurs
 - Pour un compteur donné, voir les chiffre par heure de la veille, par jour du dernier mois, ou par semaine sur l’année en cours
 
+## Origine du projet
+
+Ce projet est librement inspiré et adapté du dépot [velos-paris](https://github.com/Tristramg/velos-paris) de @Tristramg qui permet de consulter les données des compteurs parisiens.
+
 ## Obtenir les données
 
-Des capteur (« boucles ») sont installées au sein du goudron un peu partout dans Paris. Cette boucle détecte le passage d’un vélo et remonte la donnée qui est exposée sur le portail OpenData de la Ville.
+Des capteur (« boucles ») sont installées au sein du goudron un peu partout dans la métropole. Cette boucle détecte le passage d’un vélo et remonte la donnée qui est exposée sur le portail OpenData de la Métropole.
 
-Elles sont mise à jour une fois par jour et découpées en deux fichiers :
+Contrairement aux données de Paris, un seul jeu de données est disponible. La liste unique des compteurs a été réalisée à la main et devra être complétée à l'avenir si de nouveaux compteurs sont ajoutés. 
 
-Le premier qui contient les données de comptage à proprement parler (une mesure par heure et par compteur) :
-`wget "https://parisdata.opendatasoft.com/api/v2/catalog/datasets/comptage-velo-donnees-compteurs/exports/csv?rows=-1&select=id_compteur%2Csum_counts%2Cdate&timezone=UTC" -O public/compteurs.csv`
+Le jeu de données contient les données de comptage (une mesure par heure et par compteur) :
+`wget "https://opendata.bordeaux-metropole.fr/api/explore/v2.1/catalog/datasets/pc_captv_p_histo_heure/exports/csv?lang=fr&timezone=Europe%2FBerlin&use_labels=true&csv_separator=%3B&refine=type%3A%22BOUCLE%22" -O public/compteurs.csv`
 
-Le deuxième contient des informations supplémentaire sur chaque compteur (comme une photo du compteur, son emplacement…)
-`wget "https://parisdata.opendatasoft.com/api/v2/catalog/datasets/comptage-velo-compteurs/exports/csv" -O public/metadata.csv`
+La liste des capteurs est elle configurée et gitée dans le projet.
+`cat public/metadata.csv`
 
 ## Lancer le projet
 
@@ -31,6 +35,12 @@ yarn install
 ```
 
 Afin de ne pas dépendre d’une base de données, les données sont préparées et intégrées statique à chaque page.
+
+Pour corriger les entêtes du csv de données, un script a été mis en place pour coller aux entêtes de l'open data parisien.
+
+```bash
+./scripts/rename-header-compteurs-csv.sh
+```
 
 Pour préparer les données :
 
@@ -48,7 +58,7 @@ Ouvrez [http://localhost:3000](http://localhost:3000) dans votre navigateur pour
 
 ## Déployer le projet
 
-Afin de maintenir le site à jour, il faut reconstruire le site à chaque jour avec l’arrivée de nouvelles données (entre 8 et 9h du matin).
+Afin de maintenir le site à jour, il faut reconstruire le site chaque jour avec l’arrivée de nouvelles données (entre 8 et 9h du matin).
 
 Téléchargez les données
 
