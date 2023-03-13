@@ -88,7 +88,7 @@ export default function Counters({
       <div className="p-4">
         <Link href="https://velo-cite.org">
           <img
-            className="float-left w-20 cursor-pointer"
+            className="float-left h-20 cursor-pointer mr-5"
             src="/logo.png"
             alt="Logo Vélo-Cité Bordeaux"
           />
