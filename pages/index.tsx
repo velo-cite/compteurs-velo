@@ -111,6 +111,12 @@ export default function AllCounters({ counts, buildTime }: Props) {
             </div>
           </div>
         </div>
+        <div className="rounded-xl bg-white">
+          <p className="pt-4 pb-4 px-8 mt-4">
+            Les services de Bordeaux Métropole alertent sur le fait que certains compteurs sous-comptent le nombre de cyclistes pour différentes raisons
+            (sous calibrage pour ne pas détecter le tram, effet peleton qui rend difficile de définir le nombre de cyclistes, etc.). C'est particulièrement vrai pour le pont de Pierre et le cours du Maréchal Juin.
+          </p>
+        </div>
       </div>
 
       <div className="grid sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4">
