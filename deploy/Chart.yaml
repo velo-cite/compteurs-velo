@@ -1,0 +1,5 @@
+apiVersion: v2
+name: compteurs-velo
+description: "Compteurs vélo à Bordeaux"
+type: application
+version: 0.1.0
