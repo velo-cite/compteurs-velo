@@ -39,3 +39,6 @@ public
 
 .vscode
 .idea
+
+# helm chart
+/deploy
