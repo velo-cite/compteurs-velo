@@ -18,3 +18,21 @@ jobs:
       - run: docker build . -t loicag/compteurs-velo:$(date +%F)
       - run: docker push loicag/compteurs-velo:latest
       - run: docker push loicag/compteurs-velo:$(date +%F)
+  deploy:
+    needs: build
+    name: Deploy the new image
+    runs-on: ubuntu-latest
+    steps:
+      - run: >
+          curl
+          -u admin:${{ secrets.KEEL_PASSWORD }}
+          -d '{"name":"loicag/compteurs-velo", "tag":"latest"}'
+          -H "Content-Type: application/json"
+          -X POST https://keel.loicgombeaud.com/v1/webhooks/native
+      - run: sleep 60 # Time needed for the image to be pulled and started
+  warmup:
+    needs: deploy
+    name: Warm up application cache
+    runs-on: ubuntu-latest
+    steps:
+      - run: curl https://compteurs-velo.loicgombeaud.com
