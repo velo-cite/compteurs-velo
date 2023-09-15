@@ -5,5 +5,5 @@ metadata:
   labels:
     {{- include "compteurs-velo.labels" . | nindent 4 }}
 data:
-  NEXT_PUBLIC_MAPBOX_CENTER: {{ .Values.mapbox.center }}
-  NEXT_PUBLIC_MAPBOX_ZOOM: {{ .Values.mapbox.zoom }}
+  NEXT_PUBLIC_MAPBOX_CENTER: "{{ .Values.mapbox.center }}"
+  NEXT_PUBLIC_MAPBOX_ZOOM: "{{ .Values.mapbox.zoom }}"
