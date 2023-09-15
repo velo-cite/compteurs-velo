@@ -1,0 +1,32 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{ include "compteurs-velo.fullname" . }}
+  labels:
+    {{- include "compteurs-velo.labels" . | nindent 4 }}
+  {{- with .Values.annotations }}
+  annotations:
+    {{- toYaml . | nindent 4 }}
+  {{- end }}
+spec:
+  replicas: {{ .Values.replicaCount }}
+  selector:
+  selector:
+    matchLabels:
+      {{- include "compteurs-velo.selectorLabels" . | nindent 6 }}
+  template:
+    metadata:
+      labels:
+        {{- include "compteurs-velo.selectorLabels" . | nindent 8 }}
+    spec:
+      containers:
+      - name: compteurs-velo
+        image: "{{ .Values.image.repository }}:{{ .Values.image.tag }}"
+        imagePullPolicy: {{ .Values.image.pullPolicy }}
+        ports:
+        - containerPort: 80
+        envFrom:
+        - configMapRef:
+            name: {{ include "compteurs-velo.fullname" . }}
+        - secretRef:
+            name: {{ include "compteurs-velo.fullname" . }}

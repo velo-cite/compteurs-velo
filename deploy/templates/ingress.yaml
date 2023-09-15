@@ -1,0 +1,27 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: {{ include "compteurs-velo.fullname" . }}
+  labels:
+    {{- include "compteurs-velo.labels" . | nindent 4 }}
+  {{- with .Values.ingress.annotations }}
+  annotations:
+    {{- toYaml . | nindent 4 }}
+  {{- end }}
+spec:
+  ingressClassName: {{ .Values.ingress.className }}
+  rules:
+  - host: {{ .Values.ingress.host }}
+    http:
+      paths:
+      - path: /
+        pathType: Prefix
+        backend:
+          service:
+            name: {{ include "compteurs-velo.fullname" . }}
+            port:
+              number: 80
+  tls:
+  - hosts:
+    - {{ .Values.ingress.host }}
+    secretName: compteurs-velo
