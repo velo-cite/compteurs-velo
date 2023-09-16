@@ -1,5 +1,9 @@
 name: Build, push, deploy
 
+env:
+  DOCKER_REGISTRY: ghcr.io
+  IMAGE_REPOSITORY: compteurs-velo
+
 on:
   push:
     branches:
@@ -14,19 +18,24 @@ jobs:
     steps:
       - uses: actions/checkout@v4
       - run: echo ${{ secrets.ENV_LOCAL }} | base64 -d > .env.local
-      - run: echo ${{ secrets.DOCKER_HUB_TOKEN }} | docker login -u loicag --password-stdin
-      - run: docker build . -t loicag/compteurs-velo:latest
-      - run: docker build . -t loicag/compteurs-velo:$(date +%F)
-      - run: docker push loicag/compteurs-velo:latest
-      - run: docker push loicag/compteurs-velo:$(date +%F)
+      - run: echo ${{ secrets.GITHUB_TOKEN }} | docker login -u $ --password-stdin $DOCKER_REGISTRY
+      - run: |
+          IMAGE_NAME=$DOCKER_REGISTRY/${{ github.repository_owner }}/$IMAGE_REPOSITORY
+          IMAGE_NAME=$(echo $IMAGE_NAME | tr '[A-Z]' '[a-z]') # to lowercase
+          docker build . -t $IMAGE_NAME:latest
+          docker build . -t $IMAGE_NAME:$(date +%F)
+          docker push $IMAGE_NAME:latest
+          docker push $IMAGE_NAME:$(date +%F)
   deploy:
     needs: build
     name: Deploy the new image
     runs-on: ubuntu-latest
     steps:
       - run: >
+          IMAGE_NAME=$DOCKER_REGISTRY/${{ github.repository_owner }}/$IMAGE_REPOSITORY
+          IMAGE_NAME=$(echo $IMAGE_NAME | tr '[A-Z]' '[a-z]') # to lowercase
           curl
           -u admin:${{ secrets.KEEL_PASSWORD }}
-          -d '{"name":"loicag/compteurs-velo", "tag":"latest"}'
+          -d "{'name':'$IMAGE_NAME', 'tag':'latest'}"
           -H "Content-Type: application/json"
           -X POST https://keel.loicgombeaud.com/v1/webhooks/native
