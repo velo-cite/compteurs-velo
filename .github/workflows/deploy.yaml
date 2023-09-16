@@ -3,6 +3,7 @@ name: Build, push, deploy
 env:
   DOCKER_REGISTRY: ghcr.io
   IMAGE_REPOSITORY: compteurs-velo
+  KEEL_FQDN: keel.loicgombeaud.com
 
 on:
   push:
@@ -38,4 +39,4 @@ jobs:
           -u admin:${{ secrets.KEEL_PASSWORD }}
           -d "{'name':'$IMAGE_NAME', 'tag':'latest'}"
           -H "Content-Type: application/json"
-          -X POST https://keel.loicgombeaud.com/v1/webhooks/native
+          -X POST https://$KEEL_FQDN/v1/webhooks/native
