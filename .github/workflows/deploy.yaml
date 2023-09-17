@@ -32,11 +32,12 @@ jobs:
     name: Deploy the new image
     runs-on: ubuntu-latest
     steps:
-      - run: >
+      - run: |
           IMAGE_NAME=$DOCKER_REGISTRY/${{ github.repository_owner }}/$IMAGE_REPOSITORY
           IMAGE_NAME=$(echo $IMAGE_NAME | tr '[A-Z]' '[a-z]') # to lowercase
-          curl
-          -u admin:${{ secrets.KEEL_PASSWORD }}
-          -d "{'name':'$IMAGE_NAME', 'tag':'latest'}"
-          -H "Content-Type: application/json"
-          -X POST https://$KEEL_FQDN/v1/webhooks/native
+          echo IMAGE_NAME=$IMAGE_NAME
+          curl \
+            -u admin:${{ secrets.KEEL_PASSWORD }} \
+            -d "{\"name\":\"$IMAGE_NAME\", \"tag\":\"latest\"}" \
+            -H "Content-Type: application/json" \
+            -X POST https://$KEEL_FQDN/v1/webhooks/native
