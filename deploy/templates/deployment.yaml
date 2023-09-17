@@ -28,5 +28,3 @@ spec:
         envFrom:
         - configMapRef:
             name: {{ include "compteurs-velo.fullname" . }}
-        - secretRef:
-            name: {{ include "compteurs-velo.fullname" . }}-mapbox
