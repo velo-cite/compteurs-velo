@@ -1,6 +1,6 @@
 import Head from 'next/head';
 import Link from 'next/link';
-import { GetStaticPaths, GetStaticProps } from 'next';
+import { GetStaticPaths, GetStaticProps, Metadata } from 'next';
 import fs from 'fs';
 import _ from 'lodash';
 import slugify from 'slugify';
@@ -45,46 +45,40 @@ const fmtDate = (detail: CounterDetails, format: string): string => {
   return DateTime.fromISO(detail.time).toFormat(format);
 };
 
-const ImageComponent = function({detail} : {detail: Detail}) {
+const ImageComponent = function ({ detail }: { detail: Detail }) {
   if (detail.img) {
-    return <a href={detail.img} target="blank">
-      <img src={detail.img} alt={`Image du compteur${detail.name}`} />
-    </a>;
+    return (
+      <a href={detail.img} target="blank">
+        <img src={detail.img} alt={`Image du compteur${detail.name}`} />
+      </a>
+    );
   }
   return null;
-}
+};
 const DetailComponent = ({ detail }: { detail: Detail }) => (
   <div className="rounded-xl p-6 bg-white mb-4">
     <h3>{detail.name}</h3>
     {detail.date && <p>Installé le {detail.date}</p>}
-    <ImageComponent detail={detail}/>
+    <ImageComponent detail={detail} />
     <SingleMarker coord={detail.coord} />
   </div>
 );
 
-export default function Counters({
-  details,
-  buildTime,
-}: {
+type Props = {
   details: Counter;
   buildTime: string;
-}) {
+};
+
+export async function generateMetadata({ details }: Props): Promise<Metadata> {
+  return {
+    title: `Détails du comptage {details.title}`,
+  };
+}
+
+export default function Counters({ details, buildTime }: Props) {
   const dedup: Detail[] = _.uniqBy(details['details'], 'img');
   return (
     <>
-      <Head>
-        <title>Détails du comptage {details.title}</title>
-        <link rel="icon" href="/favicon.png" />
-        <link
-          href="//fonts.googleapis.com/css?family=Lato:100,200,300,400,500,600,700,800,900,300italic,400italic,700italic&subset=latin,latin-ext"
-          rel="stylesheet"
-          type="text/css"
-        />
-        <link
-          href="https://api.mapbox.com/mapbox-gl-js/v1.12.0/mapbox-gl.css"
-          rel="stylesheet"
-        />
-      </Head>
       <div className="p-4">
         <Link href="https://velo-cite.org">
           <img
