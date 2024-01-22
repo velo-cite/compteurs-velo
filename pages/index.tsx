@@ -43,14 +43,14 @@ export default function AllCounters({ counts, buildTime }: Props) {
   return (
     <>
       <div className="p-4 pb-8">
-        <Link href="https://parisenselle.fr">
+        <Link href="https://velo-cite.org">
           <img
-            className="float-left w-20 cursor-pointer"
+            className="float-left h-20 cursor-pointer mr-5"
             src="/logo.png"
-            alt="Logo Paris en Selle"
+            alt="Logo Vélo-Cité Bordeaux"
           />
         </Link>
-        <h1>Compteurs vélo à Paris</h1>
+        <h1>Compteurs vélo sur Bordeaux Métropole</h1>
         <p className="text-sm">Page générée le {buildTime}</p>
       </div>
       <div className="pb-8">
@@ -124,8 +124,8 @@ export default function AllCounters({ counts, buildTime }: Props) {
       <div className="pt-8 text-sm w-1/2">
         <p>
           Source :{' '}
-          <a href="https://parisdata.opendatasoft.com/explore/dataset/comptage-velo-donnees-compteurs/information/">
-            données ouvertes de la ville de Paris
+          <a href="https://opendata.bordeaux-metropole.fr/explore/dataset/pc_captv_p_histo_heure/information/">
+            données ouvertes de la métropole de Bordeaux
           </a>{' '}
           <a href="/compteurs.csv">(données en cache)</a>
         </p>
@@ -134,8 +134,10 @@ export default function AllCounters({ counts, buildTime }: Props) {
           <a href="https://opendatacommons.org/licenses/odbl/">ODbL</a>
         </p>
         <p>
-          <a href="https://github.com/Tristramg/velos-paris">
+          <a href="https://github.com/velo-cite/compteurs-velo">
             Code source de la page
+          </a> librement inspiré et adapté du <a href="https://github.com/Tristramg/velos-paris">
+             projet de Paris en Selle
           </a>{' '}
           sous licence MIT
         </p>

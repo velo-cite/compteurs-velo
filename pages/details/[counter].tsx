@@ -80,11 +80,11 @@ export default function Counters({ details, buildTime }: Props) {
   return (
     <>
       <div className="p-4">
-        <Link href="https://parisenselle.fr">
+        <Link href="https://velo-cite.org">
           <img
             className="float-left w-20 cursor-pointer"
             src="/logo.png"
-            alt="Logo Paris en Selle"
+            alt="Logo Vélo-Cité Bordeaux"
           />
         </Link>
         <h1>Détails du comptage {details.title}</h1>
