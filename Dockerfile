@@ -1,4 +1,4 @@
-FROM node:20.6.1-alpine3.18
+FROM node:20.6.1-alpine3.18 AS build
 
 # Set working directory
 WORKDIR /compteurs
@@ -30,6 +30,11 @@ ADD . .
 ENV NODE_OPTIONS=--openssl-legacy-provider
 RUN yarn build
 
-# Configure server
-ENTRYPOINT node_modules/.bin/next
-CMD start
+# Clean up the out directory
+RUN rm out/compteurs.csv
+
+####
+FROM nginx:1.25.2-alpine
+
+COPY --from=build /compteurs/out/ /usr/share/nginx/html/
+COPY nginx.conf /etc/nginx/conf.d/default.conf

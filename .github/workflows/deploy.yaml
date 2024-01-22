@@ -13,6 +13,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
+      - run: echo ${{ secrets.ENV_LOCAL }} | base64 -d > .env.local
       - run: echo ${{ secrets.DOCKER_HUB_TOKEN }} | docker login -u loicag --password-stdin
       - run: docker build . -t loicag/compteurs-velo:latest
       - run: docker build . -t loicag/compteurs-velo:$(date +%F)
@@ -29,10 +30,3 @@ jobs:
           -d '{"name":"loicag/compteurs-velo", "tag":"latest"}'
           -H "Content-Type: application/json"
           -X POST https://keel.loicgombeaud.com/v1/webhooks/native
-      - run: sleep 60 # Time needed for the image to be pulled and started
-  warmup:
-    needs: deploy
-    name: Warm up application cache
-    runs-on: ubuntu-latest
-    steps:
-      - run: curl https://compteurs-velo.loicgombeaud.com
