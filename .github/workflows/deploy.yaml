@@ -3,7 +3,7 @@ name: Build, push, deploy
 env:
   DOCKER_REGISTRY: ghcr.io
   IMAGE_REPOSITORY: compteurs-velo
-  KEEL_FQDN: keel.loicgombeaud.com
+  KEEL_FQDN: keel.velo-cite.org
 
 on:
   push:
