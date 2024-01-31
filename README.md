@@ -13,7 +13,7 @@ Ce projet est librement inspiré et adapté du dépot [velos-paris](https://gith
 
 Des capteur (« boucles ») sont installées au sein du goudron un peu partout dans la métropole. Cette boucle détecte le passage d’un vélo et remonte la donnée qui est exposée sur le portail OpenData de la Métropole.
 
-Contrairement aux données de Paris, un seul jeu de données est disponible. La liste unique des compteurs a été réalisée à la main et devra être complétée à l'avenir si de nouveaux compteurs sont ajoutés. 
+Contrairement aux données de Paris, un seul jeu de données est disponible. La liste unique des compteurs a été réalisée à la main et devra être complétée à l'avenir si de nouveaux compteurs sont ajoutés.
 
 Le jeu de données contient les données de comptage (une mesure par heure et par compteur) :
 `wget "https://opendata.bordeaux-metropole.fr/api/explore/v2.1/catalog/datasets/pc_captv_p_histo_heure/exports/csv?lang=fr&timezone=Europe%2FBerlin&use_labels=true&csv_separator=%3B&refine=type%3A%22BOUCLE%22" -O public/compteurs.csv`
