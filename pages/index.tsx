@@ -105,8 +105,12 @@ export default function AllCounters({ counts, buildTime }: Props) {
         </div>
         <div className="rounded-xl bg-white">
           <p className="pt-4 pb-4 px-8 mt-4">
-            Les services de Bordeaux Métropole alertent sur le fait que certains compteurs sous-comptent le nombre de cyclistes pour différentes raisons
-            (sous calibrage pour ne pas détecter le tram, effet peleton qui rend difficile de définir le nombre de cyclistes, etc.). C'est particulièrement vrai pour le pont de Pierre et le cours du Maréchal Juin.
+            Les services de Bordeaux Métropole alertent sur le fait que certains
+            compteurs sous-comptent le nombre de cyclistes pour différentes
+            raisons (sous calibrage pour ne pas détecter le tram, effet peleton
+            qui rend difficile de définir le nombre de cyclistes, etc.). C'est
+            particulièrement vrai pour le pont de Pierre et le cours du Maréchal
+            Juin.
           </p>
         </div>
       </div>
@@ -142,8 +146,10 @@ export default function AllCounters({ counts, buildTime }: Props) {
         <p>
           <a href="https://github.com/velo-cite/compteurs-velo">
             Code source de la page
-          </a> librement inspiré et adapté du <a href="https://github.com/Tristramg/velos-paris">
-             projet de Paris en Selle
+          </a>{' '}
+          librement inspiré et adapté du{' '}
+          <a href="https://github.com/Tristramg/velos-paris">
+            projet de Paris en Selle
           </a>{' '}
           sous licence MIT
         </p>
