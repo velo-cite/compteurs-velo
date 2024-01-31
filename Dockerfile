@@ -30,9 +30,6 @@ ADD . .
 ENV NODE_OPTIONS=--openssl-legacy-provider
 RUN yarn build
 
-# Clean up the out directory
-RUN rm out/compteurs.csv
-
 ####
 FROM nginx:1.25.2-alpine
 
