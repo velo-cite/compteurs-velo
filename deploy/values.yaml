@@ -4,7 +4,7 @@
 
 replicaCount: 1
 image:
-  repository: ghcr.io/loicgombeaud/compteurs-velo
+  repository: ghcr.io/velo-cite/compteurs-velo
   tag: latest
   pullPolicy: Always
 annotations:
