@@ -176,7 +176,6 @@ const prepare = (ids, details, metadata, counter) => {
   const oneDay = now.minus({ day: 2 }).toISO();
   const oneMonth = now.minus({ month: 1 }).toISO();
   const twoYear = now.minus({ year: 2 }).toISO();
-  
 
   return {
     title: counter,
