@@ -84,7 +84,7 @@ export async function counts(): Promise<{
           const date = DateTime.fromISO(data['date']);
 
           counters[id].minDate = _.min([counters[id].minDate, date]);
-          counters[id].maxDate = _.max([counters[id].minDate, date]);
+          counters[id].maxDate = _.max([counters[id].maxDate, date]);
 
           counters[id].total += count;
 
