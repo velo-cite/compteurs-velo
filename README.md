@@ -60,7 +60,7 @@ Ouvrez [http://localhost:3000](http://localhost:3000) dans votre navigateur pour
 
 ## Déployer le projet
 
-Afin de maintenir le site à jour, il faut reconstruire le site chaque jour avec l’arrivée de nouvelles données (entre 8 et 9h du matin).
+Afin de maintenir le site à jour, il faut reconstruire le site chaque jour avec l’arrivée de nouvelles données (entre 10 et 11h du matin).
 
 Téléchargez les données
 
