@@ -25,6 +25,8 @@ export type CounterMetadata = {
 
 export type CounterStat = {
   id: string;
+  channel_id: string;
+  channel_name: string;
   label: string;
   strippedLabel: string;
   days: number;

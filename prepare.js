@@ -114,7 +114,7 @@ function readCSV(metadata) {
 const relevantIds = (metadata, counterId) =>
   _(metadata)
     .toArray()
-    .filter((counter) => strip(counter.name) === counterId)
+    .filter((counter) => counter.channel_id === counterId)
     .map('id_compteur')
     .value();
 
@@ -130,6 +130,11 @@ const channelName = (id, metadata) => {
   }
 };
 
+const channelId = (id, metadata) => {
+  // console.log(metadata)
+  return metadata[id].channel_id;
+}
+
 const parseCoord = (coord) => {
   const parts = coord.split(',');
   return [Number(parts[1]), Number(parts[0])];
@@ -138,7 +143,7 @@ const parseCoord = (coord) => {
 const prepare = (ids, details, metadata, counter) => {
   const sorted = _(details)
     .filter((d) => ids.includes(d.id))
-    .map(({ count, time, id }) => ({
+    .map(({ count, time, id, name }) => ({
       count,
       time,
       id: channelName(id, metadata),
@@ -198,12 +203,13 @@ const prepare = (ids, details, metadata, counter) => {
 async function save(data, metadata) {
   const grouped = _(metadata)
     .values()
-    .groupBy((m) => strip(m.nom_compteur))
+    .groupBy((m) => m.channel_id)
     .value();
 
   for (const counter in grouped) {
+    const name = grouped[counter][0].name;
     const ids = relevantIds(metadata, counter);
-    const prepared = prepare(ids, data, metadata, counter);
+    const prepared = prepare(ids, data, metadata, name);
     const filename = `public/data/${slugify(counter)}.json`;
     fs.writeFile(filename, JSON.stringify(prepared), (error) => {
       if (error) {

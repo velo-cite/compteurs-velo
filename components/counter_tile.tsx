@@ -37,9 +37,10 @@ function Counter({ stat, avg, rank, counterCount, click }: Props) {
         <br />
         Top&nbsp;{rank}/{counterCount}
       </div>
-      <Link href={`/details/${slugify(stat.label)}`}>
+      <Link href={`/details/${stat.channel_id}`}>
+      {/*<Link href={`/details/${stat.channel_id}_${slugify(stat.label)}`}>*/}
         <div className="cursor-pointer">
-          <h2>{stat.label}</h2>
+          <h2>{stat.channel_name}</h2>
           <p className="text-sm">
             Voir la fréquentation détaillée{' '}
             <svg

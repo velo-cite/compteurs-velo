@@ -32,9 +32,9 @@ export const getStaticProps: GetStaticProps = async ({ params }) => {
 export const getStaticPaths: GetStaticPaths = async () => {
   const counters = await metadatas();
   const paths = _.map(counters, (c: CounterMetadata) => ({
-    params: { counter: slugify(strip(c.name)) },
+    params: { counter: c.channel_id},
   }));
-
+// console.log(paths)
   return {
     paths,
     fallback: false,

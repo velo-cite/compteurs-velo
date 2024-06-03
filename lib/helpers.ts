@@ -17,6 +17,8 @@ const transform =
     return {
       id,
       label: metadata.nom_compteur,
+      channel_id: metadata.channel_id,
+      channel_name: metadata.channel_name,
       strippedLabel: strip(metadata.nom_compteur),
       days,
       total: counter.total,
@@ -34,6 +36,8 @@ const merge = (counters: CounterStat[], id: string): CounterStat => ({
   id,
   label: id,
   strippedLabel: id,
+  channel_id: counters[0].channel_id,
+  channel_name: counters[0].channel_name,
   days: _.sumBy(counters, 'days') / counters.length,
   total: _.sumBy(counters, 'total'),
   day: _.sumBy(counters, 'day'),
@@ -113,7 +117,7 @@ export const prepareStats = (
 ): CounterStat[] =>
   _(counts)
     .map(transform(metadata))
-    .groupBy('strippedLabel')
+    .groupBy('channel_id')
     .map(merge)
     .sortBy('day')
     .reverse()

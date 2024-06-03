@@ -1,4 +1,4 @@
-test;coordinates;Geo Shape;id;name;nom_compteur;channel_name;id_compteur;type;channel_idqsd;counter;installation_date;mdate
+test;coordinates;Geo Shape;id;channel_name;nom_compteur;other_channel_name;id_compteur;type;channel_id;counter;installation_date;mdate
 a;44.8430068, -0.579228;"{""coordinates"": [-0.579228, 44.8430068], ""type"": ""Point""}";Z401CT11;Cours Clémenceau;27 Cours Clémenceau vers rue Buffon;vers rue Buffon;Z401CT11;BOUCLE;401;3;2021-04-28T12:57:13+02:00;2023-03-10T14:45:00+01:00
 a;44.8430068, -0.5792738;"{""coordinates"": [-0.5792738, 44.8430068], ""type"": ""Point""}";Z401CT12;Cours Clémenceau;27 Cours Clémenceau vers rue Rolland;vers rue Rolland;Z401CT12;BOUCLE;401;6;2021-04-28T12:57:13+02:00;2023-03-10T14:45:00+01:00
 a;44.7853237, -0.6435655;"{""coordinates"": [-0.6435655, 44.7853237], ""type"": ""Point""}";Z16CT101;Avenue Gustave Eiffel;Avenue Gustave Eiffel vers Saige;vers Saige;Z16CT101;BOUCLE;16;;2022-06-01T15:45:43+02:00;2022-06-01T15:48:40+02:00
