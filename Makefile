@@ -18,6 +18,7 @@ import-compteurs-bordeaux-old:
 	- ./scripts/rename-header-compteurs-csv.sh
 
 import-compteurs-bordeaux:
+	-# wget "https://opendata.bordeaux-metropole.fr/api/explore/v2.1/catalog/datasets/pc_velo_p/exports/csv?lang=fr&qv1=(datedebut%3A%5B2024-06-08T22%3A00%3A00Z%20TO%202024-06-11T21%3A59%3A59Z%5D)&timezone=Europe%2FBerlin&use_labels=true&delimiter=%3B" -O public/compteurs.csv
 	- wget "https://opendata.bordeaux-metropole.fr/api/explore/v2.1/catalog/datasets/pc_velo_p/exports/csv?lang=fr&timezone=Europe%2FBerlin&use_labels=true&delimiter=%3B" -O public/compteurs.csv
 	- ./scripts/rename-header-compteurs-csv.sh
 
