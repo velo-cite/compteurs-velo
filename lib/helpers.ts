@@ -13,6 +13,10 @@ const transform =
     const minDate = counter.minDate;
     const maxDate = counter.maxDate;
 
+    if (typeof metadata === 'undefined') {
+      console.error("L'id suivant n'existe pas dans les metadata" + id);
+    }
+
     const days = Math.round(maxDate.diff(minDate, 'day').days);
     return {
       id,
