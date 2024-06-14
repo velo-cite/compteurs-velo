@@ -83,7 +83,7 @@ export default function Counters({ details, buildTime }: Props) {
         <Link href="https://velo-cite.org">
           <img
             className="float-left h-20 cursor-pointer mr-5"
-            src="/logo.png"
+            src="https://velo-cite.org/wp-content/uploads/2023/10/cropped-VELO-CITE-2023_couleur-horizontal-1.png"
             alt="Logo Vélo-Cité Bordeaux"
           />
         </Link>
