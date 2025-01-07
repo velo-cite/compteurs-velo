@@ -1,4 +1,4 @@
-name: Build, push, deploy
+name: '[PRD] Build, push, deploy'
 
 env:
   DOCKER_REGISTRY: ghcr.io
@@ -15,7 +15,7 @@ on:
 
 jobs:
   build:
-    name: Build and push Docker image
+    name: '[PRD] Build and push Docker image'
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
@@ -30,7 +30,7 @@ jobs:
           docker push $IMAGE_NAME:$(date +%F)
   deploy:
     needs: build
-    name: Deploy the new image
+    name: '[PRD] Deploy the new image'
     runs-on: ubuntu-latest
     steps:
       - run: |
