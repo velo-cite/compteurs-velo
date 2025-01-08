@@ -1,0 +1,21 @@
+name: '[PROD] Build, push, deploy'
+
+on:
+  push:
+    branches:
+      - main
+  schedule:
+    - cron: '0 11 * * *'
+  workflow_dispatch:
+
+jobs:
+  build-push-deploy:
+    uses: LoicGombeaud/workflows/.github/workflows/build-push-deploy.yaml@main
+    with:
+      image-repository: compteurs-velo
+      image-tags: latest
+      keel-fqdn: keel.velo-cite.org
+      keel-user: admin
+      add-date-tag: true
+    secrets:
+      keel-password: ${{ secrets.KEEL_PASSWORD }}
