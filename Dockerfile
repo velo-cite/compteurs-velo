@@ -10,7 +10,7 @@ RUN yarn install
 
 # Download counters data
 RUN mkdir public \
- && wget "https://opendata.bordeaux-metropole.fr/api/explore/v2.1/catalog/datasets/pc_velo_p/exports/csv?lang=fr&timezone=Europe%2FBerlin&use_labels=true&delimiter=%3B" -O public/compteurs.csv
+ && wget "https://opendata.bordeaux-metropole.fr/api/explore/v2.1/catalog/datasets/pc_velo_p/exports/csv?lang=fr&timezone=Europe%2FBerlin&use_labels=true&delimiter=;" -O public/compteurs.csv
 
 # Rename headers
 ADD scripts/rename-header-compteurs-csv.sh scripts/
