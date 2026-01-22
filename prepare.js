@@ -173,7 +173,7 @@ const prepare = (ids, details, metadata, counter) => {
       count: 0,
     };
   const now = DateTime.local().set(dayFmt);
-  const oneDay = now.minus({ day: 2 }).toISO();
+  const oneDay = now.minus({ day: 3 }).toISO();
   const oneMonth = now.minus({ month: 1 }).toISO();
   const twoYear = now.minus({ year: 2 }).toISO();
 
