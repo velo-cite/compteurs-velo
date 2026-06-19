@@ -10,7 +10,7 @@ image:
 annotations:
   keel.sh/policy: force
   keel.sh/trigger: poll
-  keel.sh/pollSchedule: '@every 1h'
+  keel.sh/pollSchedule: "@every 1h"
 
 nameOverride: ""
 fullnameOverride: ""
@@ -39,5 +39,5 @@ ingress:
       gzip_types text/plain text/css application/json application/x-javascript text/xml application/xml application/xml+rss text/javascript application/javascript;
 
 mapbox:
-  center: 44.837761,-0.5778544
-  zoom: 11.4
+  center: 44.8718,-0.5960
+  zoom: 10
