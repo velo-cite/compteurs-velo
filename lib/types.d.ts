@@ -26,8 +26,8 @@ export type CounterMetadata = {
 
 export type CounterSummary = {
   total: number;
-  day: { time: string; count: number; id: string }[];
-  dayBefore: { time: string; count: number; id: string }[];
+  day: number;
+  dayBefore: number;
   week: number;
   month: number;
   year: number;
