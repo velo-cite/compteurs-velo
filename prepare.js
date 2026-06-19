@@ -174,6 +174,7 @@ const prepare = (ids, details, metadata, counter) => {
     };
   const now = DateTime.local().set(dayFmt);
   const oneDay = now.minus({ day: 2 }).toISO();
+  const twoDays = now.minus({ day: 3 }).toISO();
   const oneMonth = now.minus({ month: 1 }).toISO();
   const twoYear = now.minus({ year: 2 }).toISO();
 
@@ -186,6 +187,7 @@ const prepare = (ids, details, metadata, counter) => {
       coord: parseCoord(metadata[id].coordinates),
     })),
     day: sorted.filter((d) => d.time >= oneDay),
+    dayBefore: sorted.filter((d) => d.time >= twoDays && d.time < oneDay),
     hour_record: record(sorted, { minute: 0, second: 0 }),
     day_record: record(sorted, dayFmt),
     week_record: record(sorted, weekFmt),

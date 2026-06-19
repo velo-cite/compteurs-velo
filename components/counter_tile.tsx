@@ -30,6 +30,10 @@ function Counter({ stat, avg, rank, counterCount, click }: Props) {
   const month = avg ? Math.round(stat.month / 30) : stat.month;
   const year = avg ? Math.round(stat.year / stat.daysThisYear) : stat.year;
   const total = avg ? Math.round(stat.total / stat.days) : stat.total;
+  const hasDayData = stat.day > 0;
+  const dayLabel = hasDayData ? 'Hier' : 'Avant-hier';
+  const dayValue = hasDayData ? stat.day : stat.dayBefore;
+
   return (
     <div className="relative p-6">
       <div className="absolute top-0 right-0 text-center pt-4 pr-4 text-sm grey">
@@ -57,10 +61,8 @@ function Counter({ stat, avg, rank, counterCount, click }: Props) {
         </div>
       </Link>
       <dl className="pt-4">
-        <dt>Hier</dt>
-        <dd>
-          <Num n={stat.day} />
-        </dd>
+        <dt>{dayLabel}</dt>
+        <dd><Num n={dayValue} /></dd>
         <dt>Sur 7 jours</dt>
         <dd>
           <Num n={week} />

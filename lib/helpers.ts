@@ -8,31 +8,32 @@ export const parseCoord = (coord: string): [number, number] => {
 
 const transform =
   (metadatas: { [id: string]: CounterMetadata }) =>
-  (counter: CounterSummary, id: string): CounterStat => {
-    const metadata = metadatas[id];
-    const minDate = counter.minDate;
-    const maxDate = counter.maxDate;
+    (counter: CounterSummary, id: string): CounterStat => {
+      const metadata = metadatas[id];
+      const minDate = counter.minDate;
+      const maxDate = counter.maxDate;
 
-    if (typeof metadata === 'undefined') {
-      console.error("L'id suivant n'existe pas dans les metadata" + id);
-    }
+      if (typeof metadata === 'undefined') {
+        console.error("L'id suivant n'existe pas dans les metadata" + id);
+      }
 
-    const days = Math.round(maxDate.diff(minDate, 'day').days);
-    return {
-      id,
-      label: metadata.nom_compteur,
-      strippedLabel: strip(metadata.nom_compteur),
-      days,
-      total: counter.total,
-      day: counter.day,
-      month: counter.month,
-      week: counter.week,
-      year: counter.year,
-      daysThisYear: counter.daysThisYear,
-      included: [],
-      coordinates: parseCoord(metadata.coordinates),
+      const days = Math.round(maxDate.diff(minDate, 'day').days);
+      return {
+        id,
+        label: metadata.nom_compteur,
+        strippedLabel: strip(metadata.nom_compteur),
+        days,
+        total: counter.total,
+        day: _.sumBy(counter.day, 'count'),
+        dayBefore: _.sumBy(counter.dayBefore, 'count'),
+        month: counter.month,
+        week: counter.week,
+        year: counter.year,
+        daysThisYear: counter.daysThisYear,
+        included: [],
+        coordinates: parseCoord(metadata.coordinates),
+      };
     };
-  };
 
 const merge = (counters: CounterStat[], id: string): CounterStat => ({
   id,
@@ -41,6 +42,7 @@ const merge = (counters: CounterStat[], id: string): CounterStat => ({
   days: _.sumBy(counters, 'days') / counters.length,
   total: _.sumBy(counters, 'total'),
   day: _.sumBy(counters, 'day'),
+  dayBefore: _.sumBy(counters, 'dayBefore'),
   month: _.sumBy(counters, 'month'),
   week: _.sumBy(counters, 'week'),
   year: _.sumBy(counters, 'year'),
