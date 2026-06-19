@@ -16,7 +16,7 @@ Des capteur (« boucles ») sont installées au sein du goudron un peu partout
 Contrairement aux données de Paris, un seul jeu de données est disponible. La liste unique des compteurs a été réalisée à la main et devra être complétée à l'avenir si de nouveaux compteurs sont ajoutés.
 
 Le jeu de données contient les données de comptage (une mesure par heure et par compteur) :
-`wget "https://opendata.bordeaux-metropole.fr/api/explore/v2.1/catalog/datasets/pc_velo_p/exports/csv?lang=fr&timezone=Europe%2FBerlin&use_labels=true&delimiter=%3B" -O public/compteurs.csv`
+`wget "https://opendata.bordeaux-metropole.fr/api/explore/v2.1/catalog/datasets/pc_velo_p/exports/csv?lang=fr&timezone=Europe%2FBerlin&use_labels=true&delimiter=;" -O public/compteurs.csv`
 
 L'import est scripté via une commande make : `make import-compteurs-bordeaux`
 
