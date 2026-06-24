@@ -7,6 +7,7 @@ import { CounterSummary, CounterMetadata } from '../lib/types';
 const defaultCounter = (daysThisYear: number): CounterSummary => ({
   total: 0,
   day: 0,
+  dayBefore: 0,
   week: 0,
   month: 0,
   year: 0,
@@ -58,10 +59,10 @@ export async function counts(): Promise<{
       millisecond: 0,
     });
     const oneDay = now.minus({ day: 1 });
+    const twoDays = now.minus({ day: 2 });
     const oneWeek = now.minus({ week: 1 });
     const oneMonth = now.minus({ month: 1 });
     const thisYear = now.set({ month: 1, day: 1 });
-
     const daysThisYear = now.diff(now.set({ month: 1, day: 1 })).as('day');
 
     Papa.parse(file, {
@@ -98,6 +99,8 @@ export async function counts(): Promise<{
               counters[id].week += count;
               if (date >= oneDay) {
                 counters[id].day += count;
+              } else if (date >= twoDays) {
+                counters[id].dayBefore += count;
               }
             }
           }

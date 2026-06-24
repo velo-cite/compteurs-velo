@@ -6,9 +6,12 @@ import slugify from 'slugify';
 import { parseCoord } from '../lib/helpers';
 import { CounterStat } from '../lib/types.d';
 
+const weeklyAvg = (counter: CounterStat): number =>
+  Math.round(counter.week / 7);
+
 const popupHTML = (counter: CounterStat): string => `
 <h3>${counter.label}</h3>
-<p><span class="font-bord">${counter.day}</span> passages hier</p>
+<p><span class="font-bord">${weeklyAvg(counter)}</span> passages en moyenne sur la semaine</p>
 <a href=/details/${slugify(counter.label)}>Voir les détails</a>
 `;
 
@@ -33,7 +36,7 @@ const buildMarker = (
   hl: boolean,
   max: number
 ): mapboxgl.Marker =>
-  new mapboxgl.Marker(options(hl, counter.day, max))
+  new mapboxgl.Marker(options(hl, weeklyAvg(counter), max))
     .setLngLat(counter.coordinates)
     .setPopup(new mapboxgl.Popup().setHTML(popupHTML(counter)));
 
@@ -42,7 +45,7 @@ const Map = ({ counters, highlight }: Props) => {
   const [markers, setMarkers] = useState({});
   const [lastMarker, setLastMarker] = useState(null);
   const mapContainer = useRef(null);
-  const max = _.maxBy(counters, 'day').day;
+  const max = Math.max(...counters.map(weeklyAvg));
 
   mapboxgl.accessToken = process.env.NEXT_PUBLIC_MAPBOX_TOKEN;
 

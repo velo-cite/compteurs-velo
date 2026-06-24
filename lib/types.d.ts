@@ -3,6 +3,7 @@ import { DateTime } from 'luxon';
 export type CounterSummary = {
   total: number;
   day: number;
+  dayBefore: number;
   week: number;
   month: number;
   year: number;
@@ -27,13 +28,14 @@ export type CounterStat = {
   id: string;
   label: string;
   strippedLabel: string;
-  days: number;
   day: number;
+  dayBefore: number;
   week: number;
   month: number;
   year: number;
-  total: number;
   daysThisYear: number;
+  days: number;
+  total: number;
   included: string[];
   coordinates: [number, number];
 };
