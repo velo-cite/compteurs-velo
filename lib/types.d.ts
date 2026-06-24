@@ -24,17 +24,24 @@ export type CounterMetadata = {
   coordinates: string;
 };
 
-export type CounterSummary = {
-  total: number;
+export type CounterStat = {
+  id: string;
+  label: string;
+  strippedLabel: string;
   day: number;
   dayBefore: number;
   week: number;
   month: number;
   year: number;
   daysThisYear: number;
-  minDate: DateTime;
-  maxDate: DateTime;
+  days: number;
+  total: number;
+  included: string[];
+  coordinates: [number, number];
 };
+
+
+
 
 export type CounterDetails = {
   time: string;

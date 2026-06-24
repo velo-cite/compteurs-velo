@@ -1,6 +1,6 @@
 import Link from 'next/link';
 import slugify from 'slugify';
-import { CounterStat } from '../lib/types.d';
+import { CounterStat } from '../lib/types';
 
 const Num = ({ n }: { n: number }) => (
   <span className="font-mono">{n.toLocaleString('fr-FR')}</span>
