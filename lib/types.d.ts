@@ -40,9 +40,6 @@ export type CounterStat = {
   coordinates: [number, number];
 };
 
-
-
-
 export type CounterDetails = {
   time: string;
   count: number;

@@ -8,32 +8,32 @@ export const parseCoord = (coord: string): [number, number] => {
 
 const transform =
   (metadatas: { [id: string]: CounterMetadata }) =>
-    (counter: CounterSummary, id: string): CounterStat => {
-      const metadata = metadatas[id];
-      const minDate = counter.minDate;
-      const maxDate = counter.maxDate;
+  (counter: CounterSummary, id: string): CounterStat => {
+    const metadata = metadatas[id];
+    const minDate = counter.minDate;
+    const maxDate = counter.maxDate;
 
-      if (typeof metadata === 'undefined') {
-        console.error("L'id suivant n'existe pas dans les metadata" + id);
-      }
+    if (typeof metadata === 'undefined') {
+      console.error("L'id suivant n'existe pas dans les metadata" + id);
+    }
 
-      const days = Math.round(maxDate.diff(minDate, 'day').days);
-      return {
-        id,
-        label: metadata.nom_compteur,
-        strippedLabel: strip(metadata.nom_compteur),
-        days,
-        total: counter.total,
-        day: counter.day,
-        dayBefore: counter.dayBefore,
-        month: counter.month,
-        week: counter.week,
-        year: counter.year,
-        daysThisYear: counter.daysThisYear,
-        included: [],
-        coordinates: parseCoord(metadata.coordinates),
-      };
+    const days = Math.round(maxDate.diff(minDate, 'day').days);
+    return {
+      id,
+      label: metadata.nom_compteur,
+      strippedLabel: strip(metadata.nom_compteur),
+      days,
+      total: counter.total,
+      day: counter.day,
+      dayBefore: counter.dayBefore,
+      month: counter.month,
+      week: counter.week,
+      year: counter.year,
+      daysThisYear: counter.daysThisYear,
+      included: [],
+      coordinates: parseCoord(metadata.coordinates),
     };
+  };
 
 const merge = (counters: CounterStat[], id: string): CounterStat => ({
   id,

@@ -62,7 +62,9 @@ function Counter({ stat, avg, rank, counterCount, click }: Props) {
       </Link>
       <dl className="pt-4">
         <dt>{dayLabel}</dt>
-        <dd><Num n={dayValue} /></dd>
+        <dd>
+          <Num n={dayValue} />
+        </dd>
         <dt>Sur 7 jours</dt>
         <dd>
           <Num n={week} />
